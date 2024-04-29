@@ -44,6 +44,7 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'redis',
+    'django_filters',
 
     'crispy_forms',
     'crispy_bootstrap5',
@@ -163,3 +164,7 @@ if CACHE_ENABLED:
             "LOCATION": os.getenv('LOCATION'),
         }
     }
+
+PAYMENT_DATA_PATH = (
+    BASE_DIR / 'fixtures/users/payment.json'
+)

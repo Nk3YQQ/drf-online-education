@@ -1,0 +1,9 @@
+Django==4.2
+django-crispy-forms
+django-filter
+djangorestframework
+ipython
+pillow
+psycopg2-binary
+python-dotenv
+redis
