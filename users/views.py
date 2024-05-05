@@ -8,10 +8,6 @@ from users.permissions import IsUser
 from users.serializers import UsersSerializer, PaymentSerializer, UsersRegistrationSerializer
 
 
-class PermissionMixin:
-    permission_classes = [IsAuthenticated]
-
-
 class UserCreateAPIView(generics.CreateAPIView):
     serializer_class = UsersRegistrationSerializer
     permission_classes = [IsAuthenticated]
