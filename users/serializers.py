@@ -1,6 +1,7 @@
 from rest_framework import serializers
 
 from users.models import User, Payment
+from users.services import check_payment_status
 
 
 class UsersRegistrationSerializer(serializers.ModelSerializer):
@@ -37,6 +38,14 @@ class UsersSerializer(serializers.ModelSerializer):
 
 
 class PaymentSerializer(serializers.ModelSerializer):
+    status = serializers.SerializerMethodField()
+
     class Meta:
         model = Payment
         fields = '__all__'
+
+    @staticmethod
+    def get_status(instance):
+        session_id = instance.session_id
+        if session_id:
+            return check_payment_status(session_id)
