@@ -2,7 +2,7 @@ from django.urls import path
 
 from users.apps import UsersConfig
 from users.views import (UserCreateAPIView, UserListAPIView, UserRetrieveAPIView, UserUpdateAPIView,
-                         UserDestroyAPIView, PaymentListAPIView, PaymentCreateAPIView)
+                         UserDestroyAPIView, PaymentListAPIView, PaymentCreateAPIView, PaymentRetrieveAPIView)
 
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
@@ -20,6 +20,7 @@ urlpatterns = [
     # Payment
     path('payment/create/', PaymentCreateAPIView.as_view(), name='payment_create'),
     path('payment/', PaymentListAPIView.as_view(), name='payment_list'),
+    path('payment/<int:pk>/', PaymentRetrieveAPIView.as_view(), name='payment_retrieve'),
 
     # Token
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
