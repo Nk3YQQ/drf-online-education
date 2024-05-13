@@ -6,7 +6,8 @@ from rest_framework.views import APIView
 
 from service.models import Course, Lesson, Subscription
 from service.paginators import MyPaginator
-from service.serializers import CourseSerializer, LessonSerializer
+from service.serializers import CourseSerializer, LessonSerializer, SubscriptionSerializer
+from service.tasks import check_update_for_courses
 from users.permissions import IsModerator, IsOwner
 
 
@@ -30,6 +31,15 @@ class CourseViewSet(viewsets.ModelViewSet):
     @swagger_auto_schema(operation_description="Привязка пользователя к курсу")
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
+
+    @swagger_auto_schema(operation_description="Оповещение пользователя насчёт обновления курса")
+    def perform_update(self, serializer):
+        course = serializer.save()
+
+        if course:
+            check_update_for_courses.delay(course.title, course.pk)
+
+        course.save()
 
 
 class LessonCreateAPIView(generics.CreateAPIView):
@@ -90,3 +100,10 @@ class SubscriptionAPIView(APIView):
             message = 'подписка активна'
 
         return Response({'message': message})
+
+
+class SubscriptionListAPIView(generics.ListAPIView):
+    """ Чтение всех подписок """
+    serializer_class = SubscriptionSerializer
+    queryset = Subscription.objects.all()
+    permission_classes = [IsAuthenticated]

@@ -10,6 +10,8 @@ class Course(models.Model):
 
     owner = models.ForeignKey('users.User', on_delete=models.CASCADE, verbose_name='Владелец', **NULLABLE)
 
+    updated_at = models.DateTimeField(auto_now=True, verbose_name='Обновлено', **NULLABLE)
+
     def __str__(self):
         return f'{self.title}'
 
