@@ -6,3 +6,6 @@ coverage:
 
 report:
 	coverage report
+
+workers:
+	celery -A config worker -l INFO
