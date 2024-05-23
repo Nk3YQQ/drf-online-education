@@ -1,9 +1,16 @@
 import json
+
 import stripe
 from django.conf import settings
 from django.core.mail import send_mail
 
 from config.settings import PAYMENT_DATA_PATH
+
+
+def check_payment_status(session_id):
+    stripe.api_key = settings.API_KEY
+    session = stripe.checkout.Session.retrieve(session_id)
+    return session.get("payment_status")
 
 
 def convert_payment_to_data():
@@ -50,9 +57,3 @@ def create_session(price, email):
     )
 
     return session
-
-
-def check_payment_status(session_id):
-    stripe.api_key = settings.API_KEY
-    session = stripe.checkout.Session.retrieve(session_id)
-    return session.get("payment_status")
