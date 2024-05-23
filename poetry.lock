@@ -376,6 +376,20 @@ files = [
 toml = ["tomli"]
 
 [[package]]
+name = "coverage-badge"
+version = "1.1.1"
+description = "Generate coverage badges for Coverage.py."
+optional = false
+python-versions = "*"
+files = [
+    {file = "coverage-badge-1.1.1.tar.gz", hash = "sha256:42252df917404af6147380861228a4ace3d9a29804df8fc2d34a22b2bc4f45b6"},
+    {file = "coverage_badge-1.1.1-py2.py3-none-any.whl", hash = "sha256:1d8e566ad47c37910fa2bbc74ea19972b171b5b4e40624b31b3e2f2d93680266"},
+]
+
+[package.dependencies]
+coverage = "*"
+
+[[package]]
 name = "cron-descriptor"
 version = "1.4.3"
 description = "A Python library that converts cron expressions into human readable strings."
@@ -1251,4 +1265,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "183efaf5638f028a6455de3b3e13cbecd9405fceb7dc4ac587487206b29af6b2"
+content-hash = "c7c55e1c65b24aeee3a41c6050487ec378e100adddf9ee41f4043e6132ded613"
