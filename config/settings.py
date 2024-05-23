@@ -49,11 +49,9 @@ INSTALLED_APPS = [
     'redis',
     'django_filters',
 
-    'crispy_forms',
-    'crispy_bootstrap5',
-
     'users',
-    'service'
+    'service',
+    'payment'
 ]
 
 MIDDLEWARE = [
@@ -93,11 +91,11 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('PG_NAME'),
-        'USER': os.getenv('PG_USER'),
-        'PASSWORD': os.getenv('PG_PASSWORD'),
-        'HOST': os.getenv('PG_HOST'),
-        'PORT': int(os.getenv('PG_PORT'))
+        'NAME': os.getenv('POSTGRES_DB'),
+        'USER': os.getenv('POSTGRES_USER'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
+        'HOST': os.getenv('POSTGRES_HOST'),
+        'PORT': int(os.getenv('POSTGRES_PORT'))
     }
 }
 
@@ -137,14 +135,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
-STATIC_ROOT = (
-    BASE_DIR / 'static'
-)
-
-MEDIA_URL = 'media/'
-MEDIA_ROOT = BASE_DIR / 'media'
-
-CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -163,7 +153,7 @@ CACHE_ENABLED = bool(int(os.getenv('CACHE_ENABLED')))
 if CACHE_ENABLED:
     CACHES = {
         "default": {
-            "BACKEND": os.getenv('BACKEND'),
+            "BACKEND": 'django.core.cache.backends.redis.RedisCache',
             "LOCATION": os.getenv('LOCATION'),
         }
     }
