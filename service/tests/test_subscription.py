@@ -10,7 +10,7 @@ class SubscriptionAPITestCase(APITestCase):
     def setUp(self) -> None:
         """ Установка данных """
 
-        owner = create_user()
+        self.owner = create_user()
 
         response = self.client.post(
             '/users/login/', data={"email": "test.testov@mail.ru", "password": "123qwe456rty"}
@@ -22,8 +22,6 @@ class SubscriptionAPITestCase(APITestCase):
             "Authorization": f"Bearer {self._token}"
         }
 
-        self.owner = owner
-
         course = Course.objects.create(
             title='Title',
             description='Description'
@@ -34,10 +32,10 @@ class SubscriptionAPITestCase(APITestCase):
         }
 
     def test_activate_and_deactivate_subscription(self):
-        """ Тестирование создания урока """
+        """ Тестирование создания подписки """
 
         response = self.client.post(
-            '/subscription/',
+            '/subscriptions/activate/',
             data=self.subscription,
             headers=self.header
         )
@@ -53,7 +51,7 @@ class SubscriptionAPITestCase(APITestCase):
         )
 
         response = self.client.post(
-            '/subscription/',
+            '/subscriptions/activate/',
             data=self.subscription,
             headers=self.header
         )
