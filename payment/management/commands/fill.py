@@ -1,8 +1,9 @@
 from django.core.management import BaseCommand
 
+from payment.models import Payment
 from service.models import Course, Lesson
-from users.models import Payment, User
-from users.services import convert_payment_to_data
+from users.models import User
+from payment.services import convert_payment_to_data
 
 
 class Command(BaseCommand):
