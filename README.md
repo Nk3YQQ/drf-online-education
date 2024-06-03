@@ -18,7 +18,17 @@ poetry install
 
 # Основные команды
 
-## Запуск сервера
+## Запуск compose
+```
+make docker-compose-run
+```
+
+## Остановка compose
+```
+make clean-up
+```
+
+## Запуск сервера (без compose)
 ```
 make runserver
 ``` 
