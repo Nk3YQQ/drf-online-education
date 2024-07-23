@@ -11,3 +11,4 @@ celery
 drf-yasg
 django-celery-beat
 stripe
+flake8
