@@ -19,6 +19,7 @@ drf-yasg = "^1.21.7"
 stripe = "^9.6.0"
 celery = "^5.4.0"
 django-celery-beat = "^2.6.0"
+flake8 = "^7.1.0"
 
 [tool.poetry.dev-dependencies]
 
