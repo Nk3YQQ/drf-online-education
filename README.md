@@ -1,3 +1,7 @@
+# Результаты тестирования
+![Workflow Status](https://github.com/Nk3YQQ/drf-online-education/actions/workflows/main.yml/badge.svg)
+[![Coverage Status](coverage/coverage-badge.svg)](coverage/coverage-report.txt)
+
 # Структура проекта
 ```
 dfr-online-education/
@@ -7,6 +11,7 @@ dfr-online-education/
     |—— settings.py
     |—— urls.py
     |—— wsgi.py
+|—— coverage/ # Результаты тестрования
 |—— fixtures/ # Фикстуры для проекта
 |—— payment/ # Приложение оплаты
     |—— management/
