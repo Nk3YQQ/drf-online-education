@@ -11,6 +11,7 @@ from users.models import User
 @shared_task
 def check_user_for_active():
     """ Функция блокирует пользователя, если он не заходил более 1 месяца """
+
     now = timezone.now()
     one_month_ago = now - timedelta(days=30)
 

@@ -1,7 +1,7 @@
 from rest_framework import status
 from rest_framework.test import APITestCase
 
-from service.utils import create_user, create_other_user
+from service.services import create_user, create_other_user
 
 
 class UserAPITestCase(APITestCase):

@@ -5,6 +5,8 @@ from service.models import NULLABLE
 
 
 class User(AbstractUser):
+    """ Модель для пользователя """
+
     username = None
 
     email = models.EmailField(unique=True, verbose_name='Электронная почта')
