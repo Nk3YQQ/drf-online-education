@@ -15,11 +15,14 @@ jobs:
         with:
           docker-version: '20.10.7'
           
-      - name: Build and run docker-compose
-        run: make docker-compose-run
+      - name: Build and run docker
+        run: make run
         
       - name: Run tests
         run: make tests
 
+      - name: Run linters
+        run: make linters
+
       - name: Clean up
-        run: make clean-up
+        run: make clean
