@@ -2,6 +2,8 @@ from rest_framework.exceptions import ValidationError
 
 
 class CheckLessonURLValidator:
+    """ Валидатор для проверки ссылки """
+
     def __init__(self, field):
         self.field = field
 

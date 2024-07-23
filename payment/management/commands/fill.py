@@ -7,6 +7,7 @@ from payment.services import convert_payment_to_data
 
 
 class Command(BaseCommand):
+    """ Наполнение данными из фикстур """
 
     def handle(self, *args, **options):
         payment_data = convert_payment_to_data()

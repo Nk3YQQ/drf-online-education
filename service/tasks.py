@@ -8,6 +8,8 @@ from users.models import User
 
 @shared_task
 def check_update_for_courses(title, pk):
+    """ Проверка на обновление курса и отправки письма в случае обновления """
+
     users = User.objects.all()
     users_email = list(user.email for user in users)
 

@@ -2,7 +2,7 @@ from rest_framework import status
 from rest_framework.test import APITestCase
 
 from service.models import Course, Lesson
-from service.utils import create_user
+from service.services import create_user
 
 
 class LessonAPITestCase(APITestCase):

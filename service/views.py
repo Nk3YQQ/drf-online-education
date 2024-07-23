@@ -13,6 +13,7 @@ from users.permissions import IsModerator, IsOwner
 
 class CourseViewSet(viewsets.ModelViewSet):
     """ Вьюсет для курсов """
+
     serializer_class = CourseSerializer
     queryset = Course.objects.all().order_by('pk')
     pagination_class = MyPaginator
@@ -44,6 +45,7 @@ class CourseViewSet(viewsets.ModelViewSet):
 
 class LessonCreateAPIView(generics.CreateAPIView):
     """ Создание урока """
+
     serializer_class = LessonSerializer
     permission_classes = [IsAuthenticated, ~IsModerator]
 
@@ -54,6 +56,7 @@ class LessonCreateAPIView(generics.CreateAPIView):
 
 class LessonListAPIView(generics.ListAPIView):
     """ Чтение всех уроков """
+
     serializer_class = LessonSerializer
     queryset = Lesson.objects.all().order_by('course')
     permission_classes = [IsAuthenticated, IsModerator | IsOwner]
@@ -62,6 +65,7 @@ class LessonListAPIView(generics.ListAPIView):
 
 class LessonRetrieveAPIView(generics.RetrieveAPIView):
     """ Чтение одного урока """
+
     serializer_class = LessonSerializer
     queryset = Lesson.objects.all()
     permission_classes = [IsAuthenticated, IsModerator | IsOwner]
@@ -69,6 +73,7 @@ class LessonRetrieveAPIView(generics.RetrieveAPIView):
 
 class LessonUpdateAPIView(generics.UpdateAPIView):
     """ Обновление урока """
+
     serializer_class = LessonSerializer
     queryset = Lesson.objects.all()
     permission_classes = [IsAuthenticated, IsModerator | IsOwner]
@@ -76,6 +81,7 @@ class LessonUpdateAPIView(generics.UpdateAPIView):
 
 class LessonDestroyAPIView(generics.DestroyAPIView):
     """ Удаление урока """
+
     serializer_class = LessonSerializer
     queryset = Lesson.objects.all()
     permission_classes = [IsAuthenticated, IsOwner]
@@ -104,6 +110,7 @@ class SubscriptionAPIView(APIView):
 
 class SubscriptionListAPIView(generics.ListAPIView):
     """ Чтение всех подписок """
+
     serializer_class = SubscriptionSerializer
     queryset = Subscription.objects.all()
     permission_classes = [IsAuthenticated]

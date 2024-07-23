@@ -4,6 +4,8 @@ NULLABLE = {'blank': True, 'null': True}
 
 
 class Course(models.Model):
+    """ Модель для курса """
+
     title = models.CharField(max_length=100, verbose_name='Название')
     preview = models.ImageField(upload_to='service/course/', verbose_name='Превью', **NULLABLE)
     description = models.TextField(verbose_name='Описание')
@@ -21,6 +23,8 @@ class Course(models.Model):
 
 
 class Lesson(models.Model):
+    """ Модель для урока """
+
     title = models.CharField(max_length=100, verbose_name='Название')
     preview = models.ImageField(upload_to='service/lesson/', verbose_name='Превью', **NULLABLE)
     video_url = models.URLField(verbose_name='Ссылка на видео', **NULLABLE)
@@ -38,6 +42,8 @@ class Lesson(models.Model):
 
 
 class Subscription(models.Model):
+    """ Модель для подписки """
+
     user = models.ForeignKey('users.User', on_delete=models.CASCADE, verbose_name='Пользователь')
     course = models.ForeignKey(Course, on_delete=models.CASCADE, verbose_name='Курс')
 

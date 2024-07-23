@@ -7,6 +7,8 @@ from service.validators import CheckLessonURLValidator
 
 
 class LessonSerializer(serializers.ModelSerializer):
+    """ Сериализатор для урока """
+
     class Meta:
         model = Lesson
         fields = '__all__'
@@ -22,12 +24,16 @@ class LessonSerializer(serializers.ModelSerializer):
 
 
 class SubscriptionSerializer(serializers.ModelSerializer):
+    """ Сериализатор для подписки """
+
     class Meta:
         model = Subscription
         fields = '__all__'
 
 
 class CourseSerializer(serializers.ModelSerializer):
+    """ Сериализатор для курса """
+
     lesson_count = serializers.SerializerMethodField()
     subscription = serializers.SerializerMethodField()
     lessons = LessonSerializer(many=True, required=False)
