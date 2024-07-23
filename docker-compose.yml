@@ -1,19 +1,19 @@
 version: "3.9"
 services:
   pgdb:
-    build:
-      context: .
-      dockerfile: postgres/Dockerfile
+    image: postgres:latest
     container_name: pgdb
+    env_file:
+      - ./.env
     volumes:
       - pgdbdata:/var/lib/postgresql/data
 
   app:
     build: .
     container_name: app
-    command: sh -c "sleep 5 && ./dev/entrypoint.sh"
+    command: make entrypoint
     env_file:
-      - dev/.env.dev
+      - ./.env
     ports:
       - "8000:8000"
     depends_on:
@@ -23,7 +23,7 @@ services:
   celery:
     build: .
     container_name: celery-worker
-    command: [ "celery", "-A", "config", "worker", "--loglevel=info" ]
+    command: make worker
     volumes:
       - .:/app
     depends_on:
@@ -32,7 +32,7 @@ services:
   celery-beat:
     build: .
     container_name: celery-beat
-    command: [ "celery", "-A", "config", "beat", "--loglevel=info" ]
+    command: make beat
     volumes:
       - .:/app
     depends_on:
