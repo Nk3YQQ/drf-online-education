@@ -4,6 +4,8 @@ from service.models import NULLABLE
 
 
 class Payment(models.Model):
+    """ Модель для оплаты """
+
     class PaymentMethod(models.TextChoices):
         CASH = 'cash', 'Наличные'
         CARD = 'card', 'Перевод на счёт'

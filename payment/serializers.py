@@ -5,6 +5,8 @@ from payment.services import check_payment_status
 
 
 class PaymentSerializer(serializers.ModelSerializer):
+    """ Сериализатор для платежа """
+
     status = serializers.SerializerMethodField()
 
     class Meta:

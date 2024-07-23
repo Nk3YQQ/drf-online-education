@@ -3,7 +3,7 @@ from rest_framework.test import APITestCase
 
 from payment.models import Payment
 from service.models import Course
-from service.utils import create_user
+from service.services import create_user
 
 
 class PaymentAPITestCase(APITestCase):

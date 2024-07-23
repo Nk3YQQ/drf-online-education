@@ -1,4 +1,5 @@
 from django_filters.rest_framework import DjangoFilterBackend
+from drf_yasg.utils import swagger_auto_schema
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 
@@ -9,10 +10,12 @@ from payment.services import create_price, create_session
 
 class PaymentCreateAPIView(generics.CreateAPIView):
     """ Создание оплаты """
+
     serializer_class = PaymentSerializer
     queryset = Payment.objects.all()
     permission_classes = [IsAuthenticated]
 
+    @swagger_auto_schema(operation_description="Создание сессии платежа")
     def perform_create(self, serializer):
         course = serializer.validated_data.get('course')
 
@@ -37,6 +40,7 @@ class PaymentCreateAPIView(generics.CreateAPIView):
 
 class PaymentRetrieveAPIView(generics.RetrieveAPIView):
     """ Чтение одной оплаты """
+
     serializer_class = PaymentSerializer
     queryset = Payment.objects.all()
     permission_classes = [IsAuthenticated]
@@ -44,6 +48,7 @@ class PaymentRetrieveAPIView(generics.RetrieveAPIView):
 
 class PaymentListAPIView(generics.ListAPIView):
     """ Чтение всех оплат """
+
     serializer_class = PaymentSerializer
     queryset = Payment.objects.all()
     permission_classes = [IsAuthenticated]

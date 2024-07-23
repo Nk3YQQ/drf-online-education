@@ -8,17 +8,23 @@ from config.settings import PAYMENT_DATA_PATH
 
 
 def check_payment_status(session_id):
+    """ Проверка сессии платежа """
+
     stripe.api_key = settings.API_KEY
     session = stripe.checkout.Session.retrieve(session_id)
     return session.get("payment_status")
 
 
 def convert_payment_to_data():
+    """ Конвертация данных платежа """
+
     with open(PAYMENT_DATA_PATH, 'r', encoding='utf-8') as data:
         return list({'pk': item['pk'], **item['fields']} for item in json.load(data))
 
 
 def create_product(serializer):
+    """ Создание продукта """
+
     stripe.api_key = settings.API_KEY
 
     title = serializer.course.title if serializer.course else serializer.lesson.title
@@ -29,6 +35,8 @@ def create_product(serializer):
 
 
 def create_price(amount):
+    """ Создание цены """
+
     stripe.api_key = settings.API_KEY
 
     return stripe.Price.create(
@@ -40,6 +48,8 @@ def create_price(amount):
 
 
 def create_session(price, email):
+    """ Создание сессии """
+
     stripe.api_key = settings.API_KEY
 
     session = stripe.checkout.Session.create(
